@@ -85,6 +85,23 @@ Administrators can:
 * respond to migrant queries;
 * manage public contact messages.
 
+## Screenshots
+
+### Home Page
+![WelcomelyNZ home page](docs/screenshots/home.png)
+
+### Migrant Dashboard
+![Migrant dashboard](docs/screenshots/migrant-dashboard.png)
+
+### LIA Profile
+![Licensed Immigration Adviser profile](docs/screenshots/lia-profile.png)
+
+### Admin Review Panel
+![Administrator review panel](docs/screenshots/admin-review.png)
+
+### Database ERD
+![WelcomelyNZ database ERD](docs/screenshots/erd.png)
+
 ## Security Improvements
 
 After completing the original application, I reviewed the project from a production-readiness and security perspective and implemented several improvements.
