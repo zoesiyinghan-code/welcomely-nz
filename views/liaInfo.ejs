@@ -1,0 +1,154 @@
+<!-- DEBUG FILE: THIS IS THE LIAINFO TEMPLATE -->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        #searchBox {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+        }
+
+        .publisher a {
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .publisher a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ⭐ UNIVERSAL NAVBAR -->
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <% const approvedList = locals.approved || []; %>
+
+    <!-- ⭐ APPLY BACKGROUND HERE -->
+    <div class="queries-bg">
+
+        <div class="container glass-box">
+
+            <h2>LIA Information</h2>
+            <p>
+                This page displays <strong>approved</strong> information submitted by
+                Licensed Immigration Advisers.
+            </p>
+
+            <hr>
+
+            <!-- ⭐ SEARCH BAR -->
+            <input
+                type="text"
+                id="searchBox"
+                placeholder="Search by title, adviser, business, licence or keywords..."
+            >
+
+            <!-- ⭐ APPROVED SUBMISSIONS -->
+            <div id="submissionsContainer">
+
+                <% if (approvedList.length > 0) { %>
+
+                    <% approvedList.forEach(item => { %>
+
+                        <div class="submission-card searchable"
+                             style="
+                                border: 1px solid #ccc;
+                                padding: 15px;
+                                border-radius: 8px;
+                                margin-bottom: 20px;
+                                background: rgba(255, 255, 255, 0.85);
+                                backdrop-filter: blur(4px);
+                             "
+                             data-search="<%= (
+                                item.title + ' ' +
+                                item.publisher + ' ' +
+                                (item.lia_business_name || '') + ' ' +
+                                (item.lia_licence || '') + ' ' +
+                                (item.lia_languages || '') + ' ' +
+                                item.content
+                                ).toLowerCase() %>">
+                            
+
+
+                            <h3><%= item.title %></h3>
+
+                            <p class="publisher">
+                                <strong>By:</strong>
+                                <a href="/lia/<%= item.publisher %>">
+                                    <%= item.publisher %>
+                                </a>
+                                <% if (item.lia_business_name) { %>
+                                    (<%= item.lia_business_name %>)
+                                <% } %>
+                            </p>
+
+                            <p>
+                                <strong>Licence:</strong>
+                                <%= item.lia_licence %>
+                            </p>
+
+                            <p>
+                                <strong>Languages:</strong>
+                                <%= item.lia_languages || 'Not provided' %>
+                            </p>
+
+
+                            <p><%= item.content %></p>
+
+                            <p>
+                                <em>
+                                    Approved on:
+                                    <%= item.approved_at
+                                        ? item.approved_at.toLocaleString()
+                                        : "N/A"
+                                    %>
+                                </em>
+                            </p>
+
+                        </div>
+
+                    <% }) %>
+
+                <% } else { %>
+
+                    <p><em>No approved LIA submissions available yet.</em></p>
+
+                <% } %>
+
+            </div>
+
+        </div> <!-- END container -->
+
+    </div> <!-- END queries-bg -->
+
+    <!-- ⭐ LIVE SEARCH SCRIPT -->
+    <script>
+        const searchBox = document.getElementById('searchBox');
+        const cards = document.querySelectorAll('.searchable');
+
+        searchBox.addEventListener('keyup', () => {
+            const q = searchBox.value.toLowerCase();
+
+            cards.forEach(card => {
+                card.style.display = card.dataset.search.includes(q)
+                    ? "block"
+                    : "none";
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+/* ===========================================================
+   GLOBAL SITE STYLE — Clean, Friendly, Modern
+=========================================================== */
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #1A1A1A;
+    background: none;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #1a73e8;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+
+/* ===========================================================
+   HEADINGS
+=========================================================== */
+h1, h2, h3 {
+    font-weight: 700;
+    color: #1c3557;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 18px;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+p {
+    font-size: 16px;
+    color: #4a4a4a;
+    line-height: 1.65;
+}
+
+
+/* ===========================================================
+   NAVBAR — Glassmorphic Floating Style
+=========================================================== */
+.navbar {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.nav-link {
+    padding: 10px 14px !important;
+    font-weight: 500;
+    transition: 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #4C6EF5 !important;
+    text-shadow: 0 0 10px rgba(76,110,245,0.45);
+}
+
+
+/* ===========================================================
+   SCROLL PROGRESS BAR
+=========================================================== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 6px;
+    background: linear-gradient(to right, #4285f4, #78c2ff);
+    width: 0%;
+    z-index: 9999;
+}
+
+
+/* ===========================================================
+   GLOBAL BACKGROUND — Triple Layer Parallax System
+=========================================================== */
+
+.global-parallax {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -50; /* very behind */
+}
+
+.hero-layer {
+    position: absolute;
+    width: 130%; /* covers screen fully even on wide monitors */
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+/* Layer parallax visibility tuning */
+.layer-back  { opacity: 1 !important;   z-index: -40; } /* Mountain photo */
+.layer-mid   { opacity: 0.9 !important; z-index: -35; } /* Clouds */
+.layer-front { opacity: 1 !important;   z-index: -30; } /* Tui bird illustration */
+
+
+/* ===========================================================
+   FLOATING SHAPES (Ambient Decorations)
+=========================================================== */
+.float-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.25;
+    filter: blur(20px);
+    z-index: -20;
+}
+
+.shape1 { width: 180px; height: 180px; background: #74b9ff; top: 120px; left: -60px; }
+.shape2 { width: 240px; height: 240px; background: #81ecec; top: 380px; right: -80px; }
+.shape3 { width: 140px; height: 140px; background: #a29bfe; top: 780px; left: 20%; }
+.shape4 { width: 200px; height: 200px; background: #ffeaa7; top: 1200px; right: 10%; }
+
+
+/* ===========================================================
+   SNAP SCROLLING — Cinematic Slide Navigation
+=========================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+.home-page {
+    scroll-snap-type: y mandatory;
+}
+
+.snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+
+/* ===========================================================
+   HERO SECTION
+=========================================================== */
+.hero {
+    min-height: 100vh;
+    padding: 140px 20px 80px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.mask-wrapper {
+    overflow: hidden;
+}
+
+.masked-text {
+    transform: translateY(120%);
+    opacity: 0;
+}
+
+.sub-slogan {
+    font-size: 1.2rem;
+    margin-top: 6px;
+    margin-bottom: 28px;
+    color: #3a5a80;
+}
+
+/* =============================================
+   BRANDING – LOGO + NAME IN HERO SECTION
+============================================= */
+
+.brand-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    z-index: 20;
+    position: relative;
+}
+
+.brand-logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.brand-name {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1c3557;
+    opacity: 0;
+    transform: translateY(15px);
+    letter-spacing: 1px;
+}
+
+
+/* ===========================================================
+   SLIDES
+=========================================================== */
+.slide {
+    min-height: 85vh;
+    padding: 90px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.slide h2 {
+    font-size: 2.3rem;
+    color: #1c3557;
+}
+
+.slide p {
+    max-width: 760px;
+    margin: 0 auto 25px;
+}
+
+
+/* ===========================================================
+   UNIFIED SLIDE BACKGROUND — Semi Transparent
+   Allows parallax layers to be visible behind content
+=========================================================== */
+.hero,
+.slide {
+    background: rgba(244, 249, 255, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.slide:nth-child(even) {
+    background: rgba(244, 249, 255, 0.85);
+}
+
+
+/* ===========================================================
+   ILLUSTRATIONS
+=========================================================== */
+
+.illustration {
+    width: 360px;
+    margin-top: 25px;
+    opacity: 1;
+}
+
+.lia-illustration {
+    margin-top: 50px;
+}
+
+/* Wrapper to stack illustration and CTA vertically */
+.illustration-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.illustration-wrapper .cta-button {
+    margin-top: 20px;
+}
+
+/* ===========================================================
+   Illustration Slide-in Animations
+=========================================================== */
+.illustrated-slide { opacity: 0; }
+
+.slide-left  { transform: translateX(-60px); }
+.slide-right { transform: translateX(60px); }
+.slide-up    { transform: translateY(60px); }
+
+
+/* ===========================================================
+   CTA BUTTON
+=========================================================== */
+.cta-button {
+    padding: 12px 26px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    background: #1a73e8;
+    color: white !important;
+    text-decoration: none;
+    transition: 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.cta-button:hover {
+    background: #0f5bbd;
+}
+
+.lia-btn {
+    margin-bottom: 28px;
+}
+
+
+/* ===========================================================
+   FORM INPUTS (Other pages)
+=========================================================== */
+input, textarea, select {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #CBD5E0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+}
+
+input:focus, textarea:focus {
+    border-color: #4C6EF5;
+    box-shadow: 0 0 12px rgba(76,110,245,0.25);
+}
+
+
+/* ===========================================================
+   CARDS
+=========================================================== */
+.glass-card,
+.submission-card,
+.info-card,
+.form-card {
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.45);
+    backdrop-filter: blur(14px);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+    margin-bottom: 25px;
+}
+
+
+/* ===========================================================
+   FOOTER
+=========================================================== */
+footer {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    color: #777;
+}
+
+
+/* ===========================================================
+   RESPONSIVE ADJUSTMENTS
+=========================================================== */
+
+@media (max-width: 900px) {
+    .hero h1 { font-size: 2.3rem; }
+    .slide h2 { font-size: 1.9rem; }
+}
+
+@media (max-width: 600px) {
+    .hero h1 { font-size: 1.9rem; }
+    .illustration { width: 80%; }
+}
+/* Floating Action Button */
+.floating-cta {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    padding: 14px 18px;
+    background: #2563EB;
+    color: white;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(37, 99, 235, 0.45);
+}
+
+/* Optional: mobile safety */
+@media (max-width: 640px) {
+    .floating-cta {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 16px;
+    }
+}

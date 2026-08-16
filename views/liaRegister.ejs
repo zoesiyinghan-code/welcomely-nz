@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LIA Registration | Welcomely NZ</title>
+
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        .auth-card {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .auth-title {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .auth-description {
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .error-message {
+            background: #FEE2E2;
+            color: #991B1B;
+            border: 1px solid #FCA5A5;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .privacy-row {
+            text-align: left;
+            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .small-links {
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .small-links a {
+            color: #4C6EF5;
+            text-decoration: none;
+        }
+
+        .small-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="lia-register-bg">
+
+    <!-- Navbar -->
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- Global background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="auth-card">
+        <div class="auth-title">LIA Registration</div>
+
+        <p class="auth-description">
+            Register as a <strong>Licensed Immigration Adviser</strong>.
+            Your licence number and business name must be valid.
+        </p>
+
+        <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+            <div class="error-message"><%= errorMessage %></div>
+        <% } %>
+
+        <form action="/liaRegister" method="post"
+              style="display:flex; flex-direction:column; gap:14px;">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Choose a username"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email address"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Choose a password"
+                required
+            >
+
+            <input
+                type="text"
+                name="licence"
+                placeholder="Your LIA Licence Number"
+                required
+            >
+            
+            <input
+                type="text"
+                name="businessName"
+                placeholder="Business or Legal Name"
+                required
+            >
+            <input
+                type="text"
+                name="lia_languages"
+                placeholder="Languages of service (e.g. English, Mandarin)"
+                required
+            >
+
+            <!-- Privacy Policy Acceptance -->
+            <label class="privacy-row">
+                <input
+                    type="checkbox"
+                    name="acceptPrivacy"
+                    value="yes"
+                    required
+                >
+                <span>
+                    I have read and agree to the
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                        Privacy Policy
+                    </a>.
+                </span>
+            </label>
+
+            <button type="submit">Register as LIA</button>
+        </form>
+
+        <div class="small-links">
+            <p>Already registered? <a href="/login">Login here</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

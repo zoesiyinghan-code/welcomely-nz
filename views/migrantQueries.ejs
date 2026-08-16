@@ -1,0 +1,34 @@
+<html>
+<head>
+    <%- include('partials/header1.ejs') %>
+    <link rel="stylesheet" href="/public/css/styles.css">
+
+    <style>
+        .form-card {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 35px;
+        }
+    </style>
+</head>
+
+<body class="migrantQueries-bg">
+
+    <%- include('partials/navbar.ejs') %>
+    <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="form-card glass-card">
+        <h2>Migrant Queries</h2>
+        <p>Submit your questions, and our team or a Licensed Adviser will respond.</p>
+
+        <form action="/migrantQueries" method="post"
+              style="display:flex; flex-direction:column; gap:16px;">
+            <textarea name="question" placeholder="Type your question here and remember to add your contact details, i.e. Email address and/or Phone Number..." rows="6" required></textarea>
+
+            <button type="submit">Submit Question</button>
+        </form>
+    </div>
+
+</body>
+</html>

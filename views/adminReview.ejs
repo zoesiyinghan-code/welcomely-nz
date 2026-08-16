@@ -1,0 +1,79 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        .review-card {
+            padding: 20px;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .action-buttons button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .approve { background: #16a34a; color: white; }
+        .reject { background: #dc2626; color: white; }
+    </style>
+</head>
+
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+     <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="container">
+        <h2>LIA Submissions – Pending Review</h2>
+
+        <% if (pending && pending.length > 0) { %>
+
+            <% pending.forEach(item => { %>
+
+                <div class="review-card">
+                    <h3><%= item.title %></h3>
+
+                    <p><strong>LIA:</strong> <%= item.lia_business_name %></p>
+                    <p><strong>Licence:</strong> <%= item.lia_licence %></p>
+
+                    <p><%= item.content %></p>
+
+                    <p><em>
+                        Submitted on:
+                        <%= item.submitted_at ? new Date(item.submitted_at).toLocaleString() : 'N/A' %>
+                    </em></p>
+                    <p>
+                        <strong>Publisher:</strong>
+                        <a href="/lia/<%= item.publisher %>">
+                            <%= item.publisher %>
+                        </a>
+                    </p>
+
+
+                    <div class="action-buttons">
+                        <form action="/approveSubmission/<%= item.id %>" method="POST" style="display:inline;">
+                            <button class="approve">Approve</button>
+                        </form>
+
+                        <form action="/rejectSubmission/<%= item.id %>" method="POST" style="display:inline;">
+                            <button class="reject">Reject</button>
+                        </form>
+                    </div>
+                </div>
+
+            <% }); %>
+
+        <% } else { %>
+            <p><em>No pending submissions.</em></p>
+        <% } %>
+    </div>
+
+</body>
+</html>

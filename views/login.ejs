@@ -1,0 +1,66 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        .auth-card {
+            max-width: 450px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .auth-title {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .small-links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .small-links a {
+            color: #4C6EF5;
+            text-decoration: none;
+        }
+
+        .small-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Auto navbar -->
+    <%- include('partials/navbar.ejs') %>
+    <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="auth-card">
+        <div class="auth-title">Login</div>
+
+        <form action="/auth" method="post" style="display:flex; flex-direction:column; gap:14px;">
+
+            <input type="text" name="username" placeholder="Username" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="small-links">
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+            <p><a href="/forgotPassword">Forgot your password?</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+<% const s = session; %>
+
+<!-- ⭐ Universal Navbar Loader -->
+<% if (!s || !s.loggedin) { %>
+    <%- include('navbar1.ejs') %>
+
+<% } else if (s.role === 'admin') { %>
+    <%- include('navbarAdmin.ejs') %>
+
+<% } else if (s.role === 'lia') { %>
+    <%- include('navbarLIA.ejs') %>
+
+<% } else { %>
+    <%- include('navbar2.ejs') %> <!-- Migrant -->
+<% } %>

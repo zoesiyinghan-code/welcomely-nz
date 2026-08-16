@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/header1.ejs') %>
+    <link rel="stylesheet" href="/public/css/styles.css">
+
+    <style>
+        /* Subtle status badge */
+        .meta-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 10px 0 18px;
+        }
+
+        .meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.65);
+            border: 1px solid rgba(255,255,255,0.55);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+            font-size: 14px;
+            color: #1c3557;
+        }
+
+        .meta-pill strong {
+            color: #1c3557;
+        }
+
+        .notice-lock {
+            margin: 14px 0 18px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255, 251, 235, 0.75);
+            border: 1px solid rgba(245, 158, 11, 0.55);
+            backdrop-filter: blur(10px);
+            color: #92400E;
+        }
+
+        .actions-row {
+            margin-top: 18px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* Make disabled fields look intentional */
+        input:disabled, textarea:disabled {
+            opacity: 0.75;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/globalBackground') %>
+
+    <div class="container">
+
+        <div class="form-card">
+            <a href="/membersOnly" class="nav-link">← Back to Dashboard</a>
+
+            <h2>Edit LIA Submission</h2>
+
+            <div class="meta-row">
+                <span class="meta-pill">
+                    <strong>Status:</strong>
+                    <span><%= submission.status %></span>
+                </span>
+
+                <% if (submission.submitted_at) { %>
+                    <span class="meta-pill">
+                        <strong>Submitted:</strong>
+                        <span><%= new Date(submission.submitted_at).toLocaleString() %></span>
+                    </span>
+                <% } %>
+            </div>
+
+            <% const isEditable = (submission.status === 'pending'); %>
+
+            <% if (!isEditable) { %>
+                <div class="notice-lock">
+                    This submission is <strong><%= submission.status %></strong> and can no longer be edited.
+                    You may still view the details below.
+                </div>
+            <% } else { %>
+                <p style="margin-top:-6px;">
+                    You can edit this submission while it is <strong>pending</strong>.
+                    Saved changes will remain pending and require administrator review.
+                </p>
+            <% } %>
+
+            <form action="/liaEdit/<%= submission.id %>" method="POST" style="display:flex; flex-direction:column; gap:15px;">
+                <label>Title</label>
+                <input
+                    type="text"
+                    name="title"
+                    value="<%= submission.title %>"
+                    required
+                    <%= isEditable ? '' : 'disabled' %>
+                >
+
+                <label>Content</label>
+                <textarea
+                    name="content"
+                    rows="7"
+                    required
+                    <%= isEditable ? '' : 'disabled' %>
+                ><%= submission.content %></textarea>
+
+                <div class="actions-row">
+                    <% if (isEditable) { %>
+                        <button type="submit" class="cta-button" style="margin-top:0;">
+                            Save Changes
+                        </button>
+                    <% } %>
+
+                    <a href="/membersOnly" class="btn-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

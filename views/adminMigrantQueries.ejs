@@ -1,0 +1,73 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        .query-card {
+            padding: 20px;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+     <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+   <div class="query-card">
+    <p><strong>User ID:</strong> <%= q.migrant_id %></p>
+    <p><%= q.question %></p>
+    <p><em>Submitted: <%= q.submitted_at ? new Date(q.submitted_at).toLocaleString() : '' %></em></p>
+
+    <hr style="border:none;border-top:1px solid #E2E8F0;margin:14px 0;">
+
+    <% if (q.admin_reply && q.admin_reply.trim() !== '') { %>
+        <div class="admin-reply">
+            <p><strong>Admin reply:</strong></p>
+            <p><%= q.admin_reply %></p>
+
+            <% if (q.replied_at) { %>
+                <p><em>Replied: <%= new Date(q.replied_at).toLocaleString() %></em></p>
+            <% } %>
+
+            <p>
+                <strong>Status:</strong>
+                <%= q.status %>
+            </p>
+        </div>
+
+    <% } else { %>
+        <p><strong>Status:</strong> <%= q.status || 'pending' %></p>
+
+        <form method="POST" action="/admin/migrantqueries/reply/<%= q.id %>">
+            <div style="margin-top:10px;">
+                <label for="reply-<%= q.id %>"><strong>Write reply:</strong></label>
+                <textarea
+                    id="reply-<%= q.id %>"
+                    name="admin_reply"
+                    rows="4"
+                    required
+                    style="width:100%; margin-top:8px; padding:10px; border-radius:10px; border:1px solid #CBD5E1;"
+                ></textarea>
+            </div>
+
+            <button
+                type="submit"
+                style="margin-top:10px; padding:10px 14px; border:none; border-radius:10px; cursor:pointer;"
+            >
+                Submit reply
+            </button>
+        </form>
+    <% } %>
+</div>
+
+
+</body>
+</html>

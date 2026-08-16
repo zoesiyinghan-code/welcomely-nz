@@ -1,0 +1,66 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+</head>
+
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/globalBackground') %>
+
+    <div class="container">
+
+        <a href="/migrantQueries" class="cta-button">Submit a New Query</a>
+        <h2>My Submitted Queries</h2>
+        <p>Here you can review your submitted questions and any replies from the Admin.</p>
+
+        <% if (queries && queries.length > 0) { %>
+
+            <% queries.forEach(q => { %>
+                <div class="submission-card" style="
+                    border: 1px solid #ccc;
+                    padding: 15px;
+                    margin-bottom: 18px;
+                    border-radius: 10px;
+                    background: #fafafa;
+                ">
+                    <p>
+                        <strong>Status:</strong>
+                        <%= q.status ? q.status : 'new' %>
+                    </p>
+
+                    <p><strong>Your question:</strong></p>
+                    <p style="white-space: pre-wrap;"><%= q.question %></p>
+
+                    <p style="opacity:0.85;">
+                        <em>Submitted:</em>
+                        <%= q.submitted_at ? new Date(q.submitted_at).toLocaleString() : "" %>
+                        <% if (q.replied_at) { %>
+                            &nbsp; | &nbsp;
+                            <em>Replied:</em>
+                            <%= new Date(q.replied_at).toLocaleString() %>
+                        <% } %>
+                    </p>
+
+                    <hr>
+
+                    <p><strong>Admin reply:</strong></p>
+
+                    <% if (q.admin_reply) { %>
+                        <p style="white-space: pre-wrap;"><%= q.admin_reply %></p>
+                    <% } else { %>
+                        <p><em>No reply yet. Please check again later.</em></p>
+                    <% } %>
+                </div>
+            <% }) %>
+
+        <% } else { %>
+            <p><em>You have not submitted any queries yet.</em></p>
+        <% } %>
+
+        
+    </div>
+
+</body>
+</html>

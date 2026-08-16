@@ -1,0 +1,149 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        .message-card {
+            padding: 20px;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            border: 1px solid #E2E8F0;
+            background: #F8FAFC;
+        }
+
+        .meta {
+            margin: 8px 0;
+            color: #334155;
+        }
+
+        .message-body {
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 90px;
+            border-radius: 10px;
+            border: 1px solid #CBD5E1;
+            padding: 10px 12px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .btn-row {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+    <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="container">
+        <h2>Contact Us Messages</h2>
+
+        <% if (messages && messages.length > 0) { %>
+
+            <% messages.forEach(m => { %>
+
+                <div class="message-card">
+                    <div class="message-header">
+                        <div>
+                            <p style="margin:0;">
+                                <strong>Subject:</strong>
+                                <%= m.subject ? m.subject : 'No subject' %>
+                                <span style="opacity:0.7;">(#<%= m.id %>)</span>
+                            </p>
+                        </div>
+
+                        <span class="badge">
+                            Status: <%= m.status ? m.status : 'new' %>
+                        </span>
+                    </div>
+
+                    <p class="meta">
+                        <% if (m.user_id) { %>
+                            <strong>User ID:</strong> <%= m.user_id %> &nbsp; | &nbsp;
+                        <% } %>
+
+                        <strong>Email:</strong> <%= m.email %>
+                    </p>
+
+                    <p class="meta">
+                        <em>Submitted: <%= m.submitted_at ? new Date(m.submitted_at).toLocaleString() : '' %></em>
+                        <% if (m.replied_at) { %>
+                            &nbsp; | &nbsp;
+                            <em>Replied: <%= new Date(m.replied_at).toLocaleString() %></em>
+                        <% } %>
+                    </p>
+
+                    <div class="message-body">
+                        <p style="margin:0;"><strong>Message:</strong></p>
+                        <p style="margin-top:6px;"><%= m.message %></p>
+                    </div>
+
+                    <hr style="border:none;border-top:1px solid #E2E8F0;margin:14px 0;">
+
+                    <p style="margin:0;"><strong>Admin Reply:</strong></p>
+
+                    <% if (m.admin_reply) { %>
+                        <p style="margin-top:6px; white-space: pre-wrap;"><%= m.admin_reply %></p>
+                    <% } else { %>
+                        <p class="note"><em>No reply recorded yet.</em></p>
+                    <% } %>
+
+                    <!-- Reply form (matches your POST route: /admin/contactmessages/reply/:id) -->
+                    <form method="POST" action="/admin/contactmessages/reply/<%= m.id %>">
+                        <textarea name="admin_reply" placeholder="Type your reply here..." required><%= m.admin_reply ? m.admin_reply : '' %></textarea>
+
+                        <div class="btn-row">
+                            <button type="submit" class="cta-button">Save Reply</button>
+                            <span class="note">Saving a reply will set status to <strong>resolved</strong> and update <strong>replied_at</strong>.</span>
+                        </div>
+                    </form>
+                </div>
+
+            <% }) %>
+
+        <% } else { %>
+
+            <p><em>No contact messages found.</em></p>
+
+        <% } %>
+    </div>
+
+</body>
+</html>

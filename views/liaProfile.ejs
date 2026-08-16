@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('partials/header1.ejs') %>
+    <link rel="stylesheet" href="/public/css/styles.css">
+
+    <style>
+        .profile-card {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .submission-card {
+            border: 1px solid #CBD5E1;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            background: #F8FAFC;
+        }
+
+        .meta {
+            color: #475569;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ⭐ NAVBAR -->
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- ⭐ GLOBAL BACKGROUND -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="profile-card">
+
+        <!-- LIA PROFILE HEADER -->
+        <h2><%= profile.username %></h2>
+
+        <p class="meta">
+            <strong>Business:</strong>
+            <%= profile.lia_business_name || 'Not provided' %>
+        </p>
+
+        <p class="meta">
+            <strong>Licence Number:</strong>
+            <%= profile.lia_licence || 'Not provided' %>
+        </p>
+
+        <p>
+        <strong>Email:</strong>
+        <%= profile.email || 'Not provided' %>
+        </p>
+
+        <p>
+        <strong>Languages:</strong> 
+        <%= profile.lia_languages || 'Not provided' %>
+        </p>
+
+
+        <hr>
+
+        <!-- APPROVED SUBMISSIONS -->
+        <h3>Approved Information</h3>
+
+        <% if (posts.length === 0) { %>
+            <p><em>This adviser has no approved submissions yet.</em></p>
+        <% } %>
+
+        <% posts.forEach(post => { %>
+            <div class="submission-card">
+                <h4><%= post.title %></h4>
+                <p><%= post.content %></p>
+                <p>
+                    <small>
+                        Approved on
+                        <%= post.approved_at
+                            ? post.approved_at.toLocaleString()
+                            : "N/A"
+                        %>
+                    </small>
+                </p>
+            </div>
+        <% }) %>
+
+    </div>
+
+</body>
+</html>

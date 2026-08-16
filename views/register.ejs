@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | Welcomely NZ</title>
+
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        .auth-card {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .auth-title {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .small-links {
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .small-links a {
+            color: #4C6EF5;
+            text-decoration: none;
+        }
+
+        .small-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #FEE2E2;
+            color: #991B1B;
+            border: 1px solid #FCA5A5;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .privacy-row {
+            text-align: left;
+            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- Global background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="auth-card">
+        <div class="auth-title">Create an Account</div>
+
+        <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+            <div class="error-message"><%= errorMessage %></div>
+        <% } %>
+
+        <form action="/register" method="post"
+              style="display:flex; flex-direction:column; gap:14px; margin-top: 10px;">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Choose a username"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email address"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Choose a password"
+                required
+            >
+
+            <!-- Privacy Policy Acceptance -->
+            <label class="privacy-row">
+                <input
+                    type="checkbox"
+                    name="acceptPrivacy"
+                    value="yes"
+                    required
+                >
+                <span>
+                    I have read and agree to the
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                        Privacy Policy
+                    </a>.
+                </span>
+            </label>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="small-links">
+            <p>Already have an account? <a href="/login">Login here</a></p>
+            <p>Are you an adviser? <a href="/liaRegister">Register as LIA</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

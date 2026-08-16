@@ -1,0 +1,51 @@
+erDiagram
+    users ||--o{ lia_submissions : "authors (lia_id)"
+    users ||--o{ migrant_queries : "asks (migrant_id)"
+    users ||--o{ contact_messages : "sends (user_id, nullable)"
+
+    users {
+        int id PK
+        string username
+        string email
+        string password "bcrypt hash"
+        string role "migrant | lia | admin"
+        string lia_licence "LIA only"
+        string lia_business_name "LIA only"
+        string lia_languages "LIA only"
+        datetime privacy_accepted_at
+        string privacy_policy_version
+    }
+
+    lia_submissions {
+        int id PK
+        int lia_id FK "-> users.id"
+        string lia_licence "snapshot"
+        string lia_business_name "snapshot"
+        string title
+        text content
+        string status "pending | approved | rejected"
+        datetime submitted_at
+        datetime approved_at
+    }
+
+    migrant_queries {
+        int id PK
+        int migrant_id FK "-> users.id"
+        text question
+        text admin_reply
+        string status "pending | resolved"
+        datetime submitted_at
+        datetime replied_at
+    }
+
+    contact_messages {
+        int id PK
+        int user_id FK "-> users.id (nullable)"
+        string email
+        string subject
+        text message
+        text admin_reply
+        string status "pending | resolved"
+        datetime submitted_at
+        datetime replied_at
+    }

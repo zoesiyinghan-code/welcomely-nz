@@ -1,0 +1,66 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+</head>
+
+<body>
+
+    <!-- ⭐ UNIVERSAL NAVBAR -->
+    <%- include('partials/navbar.ejs') %>
+     <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="container" style="margin-top:20px; max-width:650px;">
+
+        <h2>Contact Us</h2>
+        <p>If you are experiencing any issues with the website, please send us a message and our support team will help you.</p>
+
+        <form action="/contactUs" method="post"
+              style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
+
+            <!-- ⭐ Email Field -->
+            <% if (session && session.loggedin) { %>
+
+                <label><strong>Your Email</strong></label>
+                <input type="email"
+                       name="email"
+                       value="<%= session.username %>@example.com"
+                       readonly
+                       style="background:#eee; cursor:not-allowed;">
+
+            <% } else { %>
+
+                <label><strong>Your Email</strong></label>
+                <input type="email"
+                       name="email"
+                       placeholder="Enter your email address"
+                       required>
+
+            <% } %>
+
+            <!-- ⭐ Subject -->
+            <label><strong>Subject</strong></label>
+            <input type="text"
+                   name="subject"
+                   placeholder="What's the issue about?"
+                   required>
+
+            <!-- ⭐ Message -->
+            <label><strong>Your Message</strong></label>
+            <textarea name="message"
+                      placeholder="Describe the problem you're experiencing..."
+                      rows="5"
+                      required></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    style="padding:10px; background:#007bff; color:white; border:none; border-radius:5px;">
+                Send Message
+            </button>
+        </form>
+
+    </div>
+
+</body>
+</html>

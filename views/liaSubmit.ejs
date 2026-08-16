@@ -1,0 +1,47 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+
+    <style>
+        .form-card {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+        .form-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<p style="text-align:center; color:#475569; margin-bottom:20px;">
+    Submitted information will be reviewed by an administrator before being published.
+</p>
+
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="form-card">
+        <h2>Submit LIA Information</h2>
+
+        <form action="/liaSubmit" method="post" style="display:flex; flex-direction:column; gap:15px;">
+            <input type="text" name="title" placeholder="Enter a title" required>
+
+            <textarea name="content" placeholder="Enter your information..." rows="6" required></textarea>
+
+           <button type="submit">
+                Submit for Approval
+            </button>
+
+
+        </form>
+    </div>
+</body>
+</html>

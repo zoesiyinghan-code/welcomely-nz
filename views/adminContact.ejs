@@ -1,0 +1,93 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <%- include('partials/header1.ejs') %>
+</head>
+
+<body>
+
+    <%- include('partials/navbarAdmin.ejs') %>
+    <!-- ⭐ UNIVERSAL Background -->
+    <%- include('partials/globalBackground') %>
+
+    <div class="container">
+        <h2>Migrant Queries Inbox</h2>
+
+        <% if (typeof queries !== "undefined" && queries.length > 0) { %>
+
+            <% queries.forEach(q => { %>
+                <%
+                    const hasReply = (q.admin_reply && q.admin_reply.trim() !== '');
+                    const isResolved = (q.status && String(q.status).toLowerCase() === 'resolved');
+                %>
+
+                <div class="submission-card" style="
+                    border: 1px solid #ccc;
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    border-radius: 8px;
+                    background: #fafafa;
+                ">
+                    <p>
+                        <strong>From:</strong>
+                        <%= q.username ? q.username : ("User ID " + q.migrant_id) %>
+                        &nbsp; | &nbsp;
+                        <strong>Status:</strong> <%= q.status ? q.status : 'new' %>
+                    </p>
+
+                    <p><strong>Question:</strong> <%= q.question %></p>
+
+                    <p>
+                        <em>Submitted:</em>
+                        <%= q.submitted_at ? new Date(q.submitted_at).toLocaleString() : "Unknown" %>
+
+                        <% if (q.replied_at) { %>
+                            &nbsp; | &nbsp;
+                            <em>Replied:</em> <%= new Date(q.replied_at).toLocaleString() %>
+                        <% } %>
+                    </p>
+
+                    <hr>
+
+                    <!-- Admin Reply (shown as a post) -->
+                    <% if (hasReply) { %>
+                        <div style="
+                            background:#ffffff;
+                            border:1px solid #ddd;
+                            padding:12px;
+                            border-radius:8px;
+                            margin-top:10px;
+                        ">
+                            <p style="margin:0 0 6px 0;"><strong>Admin Reply:</strong></p>
+                            <p style="white-space: pre-wrap; margin:0;"><%= q.admin_reply %></p>
+                        </div>
+                    <% } else { %>
+                        <p><strong>Admin Reply:</strong> <em>No reply recorded yet.</em></p>
+                    <% } %>
+
+                    <!-- Reply Form (only when not yet replied/resolved) -->
+                    <% if (!hasReply && !isResolved) { %>
+                        <form action="/admin/migrantqueries/reply/<%= q.id %>" method="POST" style="margin-top:10px;">
+                            <textarea name="admin_reply" placeholder="Write reply..." required></textarea>
+                            <button type="submit" class="cta-button" style="margin-top:8px;">Save Reply</button>
+                        </form>
+                    <% } else { %>
+                        <p style="margin-top:10px; opacity:0.85;">
+                            <em>This query is resolved. Reply editing is disabled.</em>
+                        </p>
+                    <% } %>
+
+                </div>
+
+            <% }) %>
+
+        <% } else { %>
+
+            <p><em>No migrant queries submitted yet.</em></p>
+
+        <% } %>
+
+    </div>
+
+</body>
+</html>

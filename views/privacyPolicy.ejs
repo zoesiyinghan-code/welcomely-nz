@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | <%= appName || "Immigration App" %></title>
+
+  <link rel="stylesheet" href="/public/css/styles.css">
+  <%- include('partials/header1.ejs') %>
+
+  <style>
+    .policy-wrap{
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 28px;
+      background: rgba(255,255,255,0.80);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.45);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      line-height: 1.55;
+    }
+    .policy-wrap h1{ margin-top: 0; }
+    .policy-wrap h2{ margin-top: 26px; }
+    .muted{ opacity: 0.85; }
+    .meta{
+      display:flex;
+      gap:12px;
+      flex-wrap: wrap;
+      margin: 10px 0 18px;
+      font-size: 0.95rem;
+    }
+    .pill{
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.06);
+      display:inline-block;
+    }
+    ul{ padding-left: 20px; }
+    code{ background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+
+<body>
+  <%- include('partials/navbar.ejs') %>
+      <!-- ⭐ UNIVERSAL Background -->
+  <%- include('partials/globalBackground') %>
+
+
+  <main class="policy-wrap">
+    <h1>Privacy Policy</h1>
+
+    <div class="meta">
+      <span class="pill"><strong>Last updated:</strong> <%= lastUpdated || "INSERT DATE" %></span>
+      <span class="pill"><strong>Version:</strong> <%= privacyVersion || "1.0" %></span>
+      <span class="pill"><strong>Applies to:</strong> all users worldwide (NZ law applies)</span>
+    </div>
+
+    <p class="muted">
+      This Privacy Policy explains how <strong><%= appName || "WelcomelyNZ" %></strong> (“we”, “us”, “our”) collects,
+      uses, stores, and protects personal information. We operate in line with the <a href="https://www.legislation.govt.nz/act/public/2020/0031/latest/LMS23223.html"><strong>New Zealand Privacy Act 2020</strong></a>
+      and the <a href="https://www.privacy.org.nz/privacy-principles/"><strong>Information Privacy Principles (IPPs)</strong></a>.
+    </p>
+
+    <h2>1. Introduction</h2>
+    <p>
+      This application supports immigration-related queries and communication between migrants, licensed immigration advisers,
+      and administrators. Users may be located anywhere in the world.
+    </p>
+
+    <h2>2. Personal Information We Collect</h2>
+    <p>We collect only information reasonably necessary to operate the application. This may include:</p>
+    <ul>
+      <li><strong>Account information:</strong> username and password (password stored in hashed form)</li>
+      <li><strong>Contact details:</strong> email address (if collected)</li>
+      <li><strong>User-submitted content:</strong> queries, submissions, and messages</li>
+      <li><strong>Role information:</strong> e.g., migrant / adviser / administrator</li>
+      <li><strong>Security logs:</strong> timestamps, session identifiers, IP address (for security/abuse prevention)</li>
+    </ul>
+
+    <h2>3. How We Use Your Information</h2>
+    <ul>
+      <li>Create and manage user accounts</li>
+      <li>Authenticate users and maintain secure sessions</li>
+      <li>Enable submission and review workflows</li>
+      <li>Allow appropriate contact/communication features</li>
+      <li>Maintain security and prevent unauthorised access</li>
+      <li>Meet legal/regulatory obligations (NZ)</li>
+    </ul>
+
+    <h2>4. Storage and Security</h2>
+    <p>
+      We take reasonable steps to protect your personal information from loss, misuse, unauthorised access, disclosure, or modification.
+      This includes access controls and storing passwords using secure hashing.
+    </p>
+
+    <h2>5. Access and Correction</h2>
+    <p>
+      Under IPPs 6 and 7, you may request access to personal information we hold about you and request corrections where appropriate.
+    </p>
+
+    <h2>6. Disclosure</h2>
+    <p>We do not sell personal information. We disclose only when necessary to operate the app or where required by law.</p>
+
+    <h2>7. International Users</h2>
+    <p>
+      Users may access this application outside New Zealand. By using the app you acknowledge processing/storage may occur in New Zealand
+      or other jurisdictions, with reasonable steps taken to protect information consistent with NZ expectations.
+    </p>
+
+    <h2>8. Retention</h2>
+    <p>
+      We retain personal information only as long as necessary for operational and legal purposes. Data may be deleted or anonymised when no longer needed.
+    </p>
+
+    <h2>9. Cookies and Sessions</h2>
+    <p>
+      We use session cookies strictly for authentication and security. We do not use cookies for advertising.
+    </p>
+
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this policy. Updates will be posted within the application and take effect on publication.</p>
+
+    <h2>11. Contact</h2>
+    <p>
+      Privacy requests/concerns: <strong><%= privacyContactEmail || "Zoesiyinghan@Gmail.com" %></strong>
+    </p>
+
+    <h2>12. Complaints</h2>
+    <p>
+      If you believe your privacy rights have been breached, contact us first. You may also complain to the Office of the Privacy Commissioner (NZ).
+    </p>
+
+    <hr />
+    <p class="muted">
+  
+    </p>
+  </main>
+</body>
+</html>

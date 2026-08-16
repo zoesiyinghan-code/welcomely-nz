@@ -1,0 +1,198 @@
+<html>
+<head>
+    <%- include('partials/header1.ejs') %>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="home-page">
+
+    <!-- Scroll progress bar MUST be inside <body> -->
+    <div class="scroll-progress"></div>
+
+
+    <!-- GLOBAL FIXED BACKGROUND LAYERS -->
+    <div class="global-parallax">
+        <img src="/public/images/hero-bg.jpg" class="hero-layer layer-back">
+        <img src="/public/images/hero-mid.png" class="hero-layer layer-mid">
+        <img src="/public/images/hero-front.png" class="hero-layer layer-front">
+    </div>
+
+
+    <!-- NAVBAR -->
+    <%- include('partials/navbar'); %>
+
+
+    <!-- FLOATING SHAPES -->
+    <div class="float-shape shape1"></div>
+    <div class="float-shape shape2"></div>
+    <div class="float-shape shape3"></div>
+    <div class="float-shape shape4"></div>
+
+
+    <!-- ================================
+         HERO SECTION
+    ================================= -->
+    <section class="hero snap-section">
+
+    <!-- BRANDING SECTION -->
+        <div class="brand-hero">
+            <img src="/public/images/logo-welcomelynz.png" alt="Welcomely NZ Logo" class="brand-logo">
+            <h1 class="brand-name">Welcomely NZ</h1>
+        </div>
+
+        <div class="mask-wrapper">
+            <h1 class="masked-text">Reliable visa insights. Licensed advice. Real support.</h1>
+        </div>
+
+        <p class="sub-slogan stagger">
+            Built to guide migrants, support LIAs, and simplify the immigration process.
+        </p>
+
+        <br><br>
+
+        <div class="mask-wrapper">
+            <h1 class="masked-text">Immigration information made simple, transparent, and stress-free.</h1>
+        </div>
+
+        <p class="sub-slogan stagger">
+            Access verified resources, ask questions, and stay informed throughout your migration journey.
+        </p>
+
+    </section>
+
+
+    <!-- ================================
+         SLIDE 1 — VISA PATHWAYS
+    ================================= -->
+   <section class="slide snap-section">
+    <h2 class="stagger">Find Clear and Accurate Visa Pathways</h2>
+    <p class="stagger">
+        Explore simplified explanations of New Zealand visa categories—updated regularly so you can make informed decisions confidently.
+    </p>
+
+    <div class="illustration-wrapper">
+        <img src="/public/images/visa-illustration.jpg"
+             class="illustration parallax illustrated-slide slide-left">
+
+        <a href="/temporaryVisas" class="cta-button stagger">
+            Explore Visa Options
+        </a>
+    </div>
+    </section>
+
+
+
+    <!-- ================================
+         SLIDE 2 — LIA BLOG
+    ================================= -->
+    <section class="slide snap-section">
+        <h2 class="stagger">Insights from Licensed Immigration Experts</h2>
+        <p class="stagger">
+            The <a href="/liaInfo">LIA Blog</a> offers verified policy updates, compliance guidance, and commentary from licensed professionals.
+        </p>
+
+        <div class="illustration-wrapper">
+            <img src="/public/images/blog-illustration.jpg"
+                class="illustration parallax illustrated-slide slide-right">
+
+            <a href="/liaInfo" class="cta-button stagger">
+                Visit LIA Blog
+            </a>
+        </div>
+    </section>
+
+
+
+    <!-- ================================
+         SLIDE 3 — MIGRANT QUERIES
+    ================================= -->
+    <section class="slide snap-section">
+        <h2 class="stagger">Ask Questions. Get Professional Advice.</h2>
+        <p class="stagger">
+            Submit your immigration questions through our
+            <a href="/migrantQueries">Migrant Queries</a> system and receive responses from verified advisers.
+        </p>
+
+        <div class="illustration-wrapper">
+            <img src="/public/images/questions-illustration.jpg"
+                class="illustration parallax illustrated-slide slide-up">
+
+            <a href="/migrantQueries" class="cta-button stagger">
+                Submit a Query
+            </a>
+        </div>
+    </section>
+
+
+
+    <!-- ================================
+         SLIDE 4 — MIGRANT REGISTRATION
+    ================================= -->
+    <section class="slide snap-section">
+        <h2 class="stagger">Join Our Community of Migrants</h2>
+        <p class="stagger">
+            Register to save resources, receive personalised updates, and track your visa journey.
+        </p>
+
+        <div class="illustration-wrapper">
+            <img src="/public/images/community-illustration.jpg"
+                class="illustration parallax illustrated-slide slide-left">
+
+            <a href="/register" class="cta-button stagger">
+                Register as Migrant
+            </a>
+        </div>
+    </section>
+
+
+
+    <!-- ================================
+         SLIDE 5 — LIA REGISTRATION
+    ================================= -->
+
+    <section class="slide snap-section">
+        <h2 class="stagger">Support Migrants as a Licensed Adviser</h2>
+        <p class="stagger">
+            LIAs can publish articles, answer queries, and offer verified guidance through our platform.
+        </p>
+
+        <div class="illustration-wrapper">
+            <img src="/public/images/adviser-illustration.jpg"
+                class="illustration parallax illustrated-slide slide-right lia-illustration">
+
+            <a href="/liaRegister" class="cta-button stagger lia-btn">
+                LIA Registration
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ================================
+         FINAL CTA
+    ================================= -->
+    <section class="slide snap-section">
+        <h2 class="stagger">Your Journey Starts Here</h2>
+        <p class="stagger">
+            Whether you're a migrant, adviser, or employer, our hub supports you every step of the way.
+        </p>
+
+        <div class="cta-wrapper">
+            <a href="/register" class="cta-button stagger">
+                Get Started
+            </a>
+        </div>
+    </section>
+
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- HOME PAGE ANIMATIONS -->
+    <script src="/public/js/homeAnimations.js"></script>
+
+</body>
+</html>
